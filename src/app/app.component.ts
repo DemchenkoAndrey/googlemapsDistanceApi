@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   google_key: string = 'key=AIzaSyChseIXTl3mrJp_diMqP_LaX_qL2jPm5WQ';
   latitude: any;
   longitude: any;
+  total: number;
   places: Array<Place> = [];
   constructor (private element: ElementRef,
                private http: HttpClient) {}
@@ -46,6 +47,8 @@ export class AppComponent implements OnInit {
           if (result.status === 'OK') {
             const address: string = result.results[0].formatted_address;
             this.createPlace(latitude, longitude, address);
+            this.element.nativeElement.querySelector('#lat').value = '';
+            this.element.nativeElement.querySelector('#lon').value = '';
           }
         });
     } else {
@@ -63,14 +66,30 @@ export class AppComponent implements OnInit {
         .subscribe((res: GeocodehResultsModel) => {
           const distance = res.rows[0].elements[0].distance.text;
           const distance_value = res.rows[0].elements[0].distance.value;
-          const place = new Place(latitude, longitude, address, distance, distance_value);
+          const place = new Place(longitude, latitude, address, distance, distance_value);
           this.places.push(place);
+          this.sumTotal();
           console.log(this.places);
         });
     } else {
       const place = new Place(latitude, longitude, address);
       this.places.push(place);
     }
+  }
+
+  sumTotal() {
+    let sum = 0;
+    const Arr = this.places.map(el => {
+      return el.distance_value;
+    });
+
+    Arr.forEach(el => {
+      if (el !== undefined) {
+        sum += el;
+      }
+    });
+    this.total = sum / 1000;
+    console.log(Arr, this.total);
   }
 }
 

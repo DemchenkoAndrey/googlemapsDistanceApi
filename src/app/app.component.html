@@ -1,10 +1,10 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Demchenko Andrii
-  </h1>
-  <!--<img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">-->
-</div>
+<!--<div style="text-align:center">-->
+  <!--<h1>-->
+    <!--Demchenko Andrii-->
+  <!--</h1>-->
+  <!--&lt;!&ndash;<img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">&ndash;&gt;-->
+<!--</div>-->
 <div class="wrappr">
   <div class="data-fields">
     <form class="form-inline" #form="ngForm">
@@ -22,15 +22,23 @@
     <section class="the-css-at-table">
       <header style="display: none;">
         <p class="tr">
-          <span class="th">lat</span>
-          <span class="th">long</span>
-          <span class="th">address</span>
           <span class="th">Distance</span>
+          <span class="th">Address</span>
+          <span class="th">Lat</span>
+          <span class="th">Long</span>
         </p>
       </header>
       <div class="tbody" *ngFor="let place of places">
         <p class="tr">
-      <span>
+           <span>
+        <span class="title">Distance: <br class="no-style-break"></span>
+       {{place.distance}}
+      </span><br class="no-style-break"><br class="no-style-break">
+          <span>
+        <span class="title">address: <br class="no-style-break"></span>
+        {{place.full_adress}}
+      </span><br class="no-style-break"><br class="no-style-break">
+          <span>
         <span class="title">lat: <br class="no-style-break"></span>
        {{place.lang}}
       </span><br class="no-style-break"><br class="no-style-break">
@@ -38,18 +46,12 @@
         <span class="title">long: <br class="no-style-break"></span>
         {{place.long}}
       </span><br class="no-style-break"><br class="no-style-break">
-          <span>
-        <span class="title">address: <br class="no-style-break"></span>
-        {{place.full_adress}}
-      </span><br class="no-style-break"><br class="no-style-break">
-          <span>
-        <span class="title">Distance: <br class="no-style-break"></span>
-       {{place.distance}}
-      </span><br class="no-style-break"><br class="no-style-break">
         </p>
         <p class="spacer">&nbsp;</p>
         <p class="tr">
       </div>
+      <hr *ngIf="total > 0">
+      <div *ngIf="total > 0">Total: {{total}} KM</div>
     </section>
 
   </div>
