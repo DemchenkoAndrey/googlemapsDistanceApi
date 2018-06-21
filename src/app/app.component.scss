@@ -1,0 +1,75 @@
+.data-fields {
+  padding-bottom: 16px;
+  text-align: center;
+}
+.history {
+  display: flex;
+  justify-content: center;
+  section.the-css-at-table {
+    display: table;
+    border-collapse: collapse;
+    margin: 0 0 20px 0;
+    header {
+      display: table-header-group !important;
+    }
+    .tbody {
+      display: table-row-group;
+    }
+    .tr {
+      display: table-row;
+      > span {
+        display: table-cell;
+        padding: 10px;
+        border: 1px solid #E6E7F1;
+        text-align: left;
+      }
+    }
+    .tr:nth-child(odd) {
+      background-color: #F6F7FA;
+    }
+    .tr:nth-child(even) {
+      background-color: white;
+    }
+    .th {
+      background: #798299;
+      border-color: darken(#798299, 10%);
+      color: white;
+    }
+    .title {
+      display: none;
+    }
+    .no-style-break {
+      display: none;
+    }
+    .spacer {
+      display: none;
+    }
+    @media (max-width: 700px) {
+      display: block;
+      header {
+        display: none !important;
+      }
+      .tbody {
+        display: block;
+      }
+      .tr {
+        display: block;
+        margin: 0 0 20px 0;
+        > span {
+          display: block;
+        }
+      }
+      .tr > span::before {
+        display: inline-block;
+        width: 33%;
+        margin-right: 10px;
+        font-weight: bold;
+      }
+      .title {
+        display: inline-block;
+        width: 30%;
+        font-weight: bold;
+      }
+    }
+  }
+}
