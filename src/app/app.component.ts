@@ -17,7 +17,8 @@ interface GeocodehResultsModel {
 export class AppComponent implements OnInit {
   @ViewChild('gmap') gmapElement: any;
   map: google.maps.Map;
-  google_key: string = 'key=AIzaSyChseIXTl3mrJp_diMqP_LaX_qL2jPm5WQ';
+  google_distance_API: string = 'key=AIzaSyB93JaeySL-BeRrHPEZl8x6ZeatQysWlcA';
+  google_geocode_API: string = 'key=AIzaSyDE6HFdEut-jsvgPkfNXppri06zR_FE1yk';
   latitude: any;
   longitude: any;
   total: number;
@@ -41,7 +42,7 @@ export class AppComponent implements OnInit {
  addPlace(latitude, longitude) {
     if (latitude && longitude) {
       let result: any;
-      this.http.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&${this.google_key}`)
+      this.http.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&${this.google_geocode_API}`)
         .subscribe(res => {
           result = res;
           if (result.status === 'OK') {
@@ -55,14 +56,13 @@ export class AppComponent implements OnInit {
       return;
     }
   }
-
   createPlace(latitude, longitude, address) {
     if (this.places.length > 0) {
       const params: string = [
         `origins=${this.places[this.places.length - 1].full_adress}`,
         `destinations=${address}`,
       ].join('&');
-      this.http.get(`https://maps.googleapis.com/maps/api/distancematrix/json?units=metrikal&${params}&${this.google_key}`)
+      this.http.get(`https://maps.googleapis.com/maps/api/distancematrix/json?${params}&${this.google_distance_API}`)
         .subscribe((res: GeocodehResultsModel) => {
           const distance = res.rows[0].elements[0].distance.text;
           const distance_value = res.rows[0].elements[0].distance.value;
@@ -89,7 +89,6 @@ export class AppComponent implements OnInit {
       }
     });
     this.total = sum / 1000;
-    console.log(Arr, this.total);
   }
 }
 
